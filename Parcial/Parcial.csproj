@@ -303,6 +303,7 @@
     <Content Include="Views\Shared\_LayoutMenu.cshtml" />
     <Content Include="Views\Shared\_LayoutPrincipal.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\MenuPrincipal1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

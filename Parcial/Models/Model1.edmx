@@ -41,6 +41,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rol" Type="int" />
         </EntityType>
         <Function Name="InsertarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NuevoUsuario" Type="nvarchar" Mode="In" />
@@ -98,6 +99,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
           <Property Name="User" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol" Type="Int32" />
         </EntityType>
         <EntityType Name="Carrera">
           <Key>
@@ -142,6 +144,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="RC101320Model.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="User" ColumnName="User" />

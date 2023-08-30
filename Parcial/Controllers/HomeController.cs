@@ -31,5 +31,10 @@ namespace Parcial.Controllers
         {
             return View();
         }
+
+        public ActionResult MenuPrincipal1()
+        {
+            return View();
+        }
     }
 }

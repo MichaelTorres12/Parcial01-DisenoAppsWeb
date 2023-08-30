@@ -29,7 +29,17 @@ namespace Parcial.Controllers
 
             if (usuario != null && BCrypt.Net.BCrypt.Verify(password, usuario.Password))
             {
-                return RedirectToAction("MenuPrincipal", "Home");
+                if (usuario.Rol == 0)
+                {
+                    return RedirectToAction("MenuPrincipal", "Home");
+                }
+                else 
+                {
+                    if ((usuario.Rol == 1))
+                    {
+                        return RedirectToAction("MenuPrincipal1", "Home");
+                    }                    
+                }                
             }
 
             ViewBag.Error = "El usuario " + user + " no existe en la base de datos";
