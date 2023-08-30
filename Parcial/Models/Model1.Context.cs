@@ -13,10 +13,10 @@ namespace Parcial.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RC101320Entities : DbContext
+    public partial class RC101320Entities1 : DbContext
     {
-        public RC101320Entities()
-            : base("name=RC101320Entities")
+        public RC101320Entities1()
+            : base("name=RC101320Entities1")
         {
         }
     
@@ -25,8 +25,8 @@ namespace Parcial.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cursos> Cursos { get; set; }
-        public virtual DbSet<Estudiantes> Estudiantes { get; set; }
-        public virtual DbSet<Inscripciones> Inscripciones { get; set; }
+        public virtual DbSet<Curso> Cursos { get; set; }
+        public virtual DbSet<Estudiante> Estudiantes { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

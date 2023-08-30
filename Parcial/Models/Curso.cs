@@ -12,18 +12,9 @@ namespace Parcial.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cursos
+    public partial class Curso
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cursos()
-        {
-            this.Inscripciones = new HashSet<Inscripciones>();
-        }
-    
-        public int cursoID { get; set; }
+        public string cursoID { get; set; }
         public string nombreCurso { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inscripciones> Inscripciones { get; set; }
     }
 }
