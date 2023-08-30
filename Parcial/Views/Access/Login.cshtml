@@ -1,9 +1,20 @@
 ﻿@{
     ViewBag.Title = "Iniciar Sesión";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
 <link rel="stylesheet" href="~/Content/Login.css">
+<header>
+    <nav id="navbar">
+        <div class="containerMenu">
+            <h1><a href="@Url.Action("Index", "Home")">Registro Academico</a></h1>
+            <ul>
+                <li><a href="@Url.Action("About", "Home")">Acerca de</a></li>
+                <li><a href="@Url.Action("Contact", "Home")">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
 <div class="container">
     <div class="login-container">
