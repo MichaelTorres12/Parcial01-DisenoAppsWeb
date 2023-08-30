@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="RC101320Model.Curso" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RC101320Model.Estudiante" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RC101320Model.Usuario" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RC101320Model.Carrera" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

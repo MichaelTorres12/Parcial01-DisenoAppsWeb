@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RC101320Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Descripcion" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cursos">
           <Key>
             <PropertyRef Name="cursoID" />
@@ -22,36 +34,29 @@
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="edad" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'RC101320.dbo.Inscripciones' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Inscripciones">
-          <Property Name="estudianteID" Type="varchar" MaxLength="50" />
-          <Property Name="cursoID" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'RC101320.dbo.Usuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Usuarios">
           <Key>
-            <PropertyRef Name="User" />
-            <PropertyRef Name="Password" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'RC101320.dbo.Inscripciones', pero no se encuentra la tabla.
-        <Association Name="FK__Inscripci__curso__4D94879B" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'RC101320.dbo.Inscripciones', pero no se encuentra la tabla.
-        <Association Name="FK__Inscripci__estud__4CA06362" />-->
+        <Function Name="InsertarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NuevoUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="NuevaContraseña" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerCarreras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="RC101320ModelStoreContainer">
           <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [Usuarios].[User] AS [User], 
-    [Usuarios].[Password] AS [Password]
-    FROM [dbo].[Usuarios] AS [Usuarios]</DefiningQuery>
+    [Carreras].[Id] AS [Id], 
+    [Carreras].[Nombre] AS [Nombre], 
+    [Carreras].[Descripcion] AS [Descripcion]
+    FROM [dbo].[Carreras] AS [Carreras]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -79,15 +84,36 @@ error 6004: Una relación hace referencia a la tabla 'RC101320.dbo.Inscripciones
           <EntitySet Name="Cursos" EntityType="Self.Curso" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiante" />
           <EntitySet Name="Usuarios" EntityType="RC101320Model.Usuario" />
+          <EntitySet Name="Carreras" EntityType="RC101320Model.Carrera" />
+          <FunctionImport Name="InsertarUsuario">
+            <Parameter Name="NuevoUsuario" Mode="In" Type="String" />
+            <Parameter Name="NuevaContraseña" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerCarreras" ReturnType="Collection(RC101320Model.ObtenerCarreras_Result)" />
         </EntityContainer>
         <EntityType Name="Usuario">
           <Key>
-            <PropertyRef Name="User" />
-            <PropertyRef Name="Password" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="User" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Descripcion" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="ObtenerCarreras_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1000" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -116,11 +142,31 @@ error 6004: Una relación hace referencia a la tabla 'RC101320.dbo.Inscripciones
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="RC101320Model.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="User" ColumnName="User" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Carreras">
+            <EntityTypeMapping TypeName="RC101320Model.Carrera">
+              <MappingFragment StoreEntitySet="Carreras">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertarUsuario" FunctionName="RC101320Model.Store.InsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="ObtenerCarreras" FunctionName="RC101320Model.Store.ObtenerCarreras">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RC101320Model.ObtenerCarreras_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

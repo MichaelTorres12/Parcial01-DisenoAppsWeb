@@ -12,10 +12,10 @@ namespace Parcial.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Carrera
     {
-        public string User { get; set; }
-        public string Password { get; set; }
         public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
     }
 }

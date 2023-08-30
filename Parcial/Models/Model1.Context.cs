@@ -12,6 +12,8 @@ namespace Parcial.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class RC101320Entities1 : DbContext
     {
@@ -28,5 +30,24 @@ namespace Parcial.Models
         public virtual DbSet<Curso> Cursos { get; set; }
         public virtual DbSet<Estudiante> Estudiantes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Carrera> Carreras { get; set; }
+    
+        public virtual int InsertarUsuario(string nuevoUsuario, string nuevaContraseña)
+        {
+            var nuevoUsuarioParameter = nuevoUsuario != null ?
+                new ObjectParameter("NuevoUsuario", nuevoUsuario) :
+                new ObjectParameter("NuevoUsuario", typeof(string));
+    
+            var nuevaContraseñaParameter = nuevaContraseña != null ?
+                new ObjectParameter("NuevaContraseña", nuevaContraseña) :
+                new ObjectParameter("NuevaContraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarUsuario", nuevoUsuarioParameter, nuevaContraseñaParameter);
+        }
+    
+        public virtual ObjectResult<ObtenerCarreras_Result> ObtenerCarreras()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerCarreras_Result>("ObtenerCarreras");
+        }
     }
 }
