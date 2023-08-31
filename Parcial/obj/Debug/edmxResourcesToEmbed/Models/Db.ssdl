@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RC101320Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cursos">
+    <Key>
+      <PropertyRef Name="cursoID" />
+    </Key>
+    <Property Name="cursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreCurso" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estudiantes">
+    <Key>
+      <PropertyRef Name="estudianteID" />
+    </Key>
+    <Property Name="estudianteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="edad" Type="int" />
+  </EntityType>
+  <EntityType Name="Inscripciones">
+    <Key>
+      <PropertyRef Name="estudianteID" />
+    </Key>
+    <Property Name="estudianteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cursoID" Type="int" />
+  </EntityType>
+  <Association Name="FK__Inscripci__curso__3B75D760">
+    <End Role="Cursos" Type="Self.Cursos" Multiplicity="0..1" />
+    <End Role="Inscripciones" Type="Self.Inscripciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cursos">
+        <PropertyRef Name="cursoID" />
+      </Principal>
+      <Dependent Role="Inscripciones">
+        <PropertyRef Name="cursoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inscripci__estud__3A81B327">
+    <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
+    <End Role="Inscripciones" Type="Self.Inscripciones" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Estudiantes">
+        <PropertyRef Name="estudianteID" />
+      </Principal>
+      <Dependent Role="Inscripciones">
+        <PropertyRef Name="estudianteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RC101320ModelStoreContainer">
+    <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inscripciones" EntityType="Self.Inscripciones" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Inscripci__curso__3B75D760" Association="Self.FK__Inscripci__curso__3B75D760">
+      <End Role="Cursos" EntitySet="Cursos" />
+      <End Role="Inscripciones" EntitySet="Inscripciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inscripci__estud__3A81B327" Association="Self.FK__Inscripci__estud__3A81B327">
+      <End Role="Estudiantes" EntitySet="Estudiantes" />
+      <End Role="Inscripciones" EntitySet="Inscripciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

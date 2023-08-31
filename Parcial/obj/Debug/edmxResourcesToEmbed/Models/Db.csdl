@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RC101320Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cursos">
+    <Key>
+      <PropertyRef Name="cursoID" />
+    </Key>
+    <Property Name="cursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreCurso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Inscripciones" Relationship="Self.FK__Inscripci__curso__3B75D760" FromRole="Cursos" ToRole="Inscripciones" />
+  </EntityType>
+  <EntityType Name="Estudiantes">
+    <Key>
+      <PropertyRef Name="estudianteID" />
+    </Key>
+    <Property Name="estudianteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="edad" Type="Int32" />
+    <NavigationProperty Name="Inscripciones" Relationship="Self.FK__Inscripci__estud__3A81B327" FromRole="Estudiantes" ToRole="Inscripciones" />
+  </EntityType>
+  <EntityType Name="Inscripciones">
+    <Key>
+      <PropertyRef Name="estudianteID" />
+    </Key>
+    <Property Name="estudianteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cursoID" Type="Int32" />
+    <NavigationProperty Name="Cursos" Relationship="Self.FK__Inscripci__curso__3B75D760" FromRole="Inscripciones" ToRole="Cursos" />
+    <NavigationProperty Name="Estudiantes" Relationship="Self.FK__Inscripci__estud__3A81B327" FromRole="Inscripciones" ToRole="Estudiantes" />
+  </EntityType>
+  <Association Name="FK__Inscripci__curso__3B75D760">
+    <End Role="Cursos" Type="Self.Cursos" Multiplicity="0..1" />
+    <End Role="Inscripciones" Type="Self.Inscripciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cursos">
+        <PropertyRef Name="cursoID" />
+      </Principal>
+      <Dependent Role="Inscripciones">
+        <PropertyRef Name="cursoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inscripci__estud__3A81B327">
+    <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
+    <End Role="Inscripciones" Type="Self.Inscripciones" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Estudiantes">
+        <PropertyRef Name="estudianteID" />
+      </Principal>
+      <Dependent Role="Inscripciones">
+        <PropertyRef Name="estudianteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RC101320Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cursos" EntityType="Self.Cursos" />
+    <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" />
+    <EntitySet Name="Inscripciones" EntityType="Self.Inscripciones" />
+    <AssociationSet Name="FK__Inscripci__curso__3B75D760" Association="Self.FK__Inscripci__curso__3B75D760">
+      <End Role="Cursos" EntitySet="Cursos" />
+      <End Role="Inscripciones" EntitySet="Inscripciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inscripci__estud__3A81B327" Association="Self.FK__Inscripci__estud__3A81B327">
+      <End Role="Estudiantes" EntitySet="Estudiantes" />
+      <End Role="Inscripciones" EntitySet="Inscripciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

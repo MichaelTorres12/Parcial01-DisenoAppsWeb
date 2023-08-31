@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RC101320ModelStoreContainer" CdmEntityContainer="RC101320Entities">
+    <EntitySetMapping Name="Cursos">
+      <EntityTypeMapping TypeName="RC101320Model.Cursos">
+        <MappingFragment StoreEntitySet="Cursos">
+          <ScalarProperty Name="cursoID" ColumnName="cursoID" />
+          <ScalarProperty Name="nombreCurso" ColumnName="nombreCurso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estudiantes">
+      <EntityTypeMapping TypeName="RC101320Model.Estudiantes">
+        <MappingFragment StoreEntitySet="Estudiantes">
+          <ScalarProperty Name="estudianteID" ColumnName="estudianteID" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inscripciones">
+      <EntityTypeMapping TypeName="RC101320Model.Inscripciones">
+        <MappingFragment StoreEntitySet="Inscripciones">
+          <ScalarProperty Name="estudianteID" ColumnName="estudianteID" />
+          <ScalarProperty Name="cursoID" ColumnName="cursoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

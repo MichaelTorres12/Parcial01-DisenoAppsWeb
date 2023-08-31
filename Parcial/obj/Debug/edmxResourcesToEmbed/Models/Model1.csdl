@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RC101320Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RC101320Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Usuarios" EntityType="RC101320Model.Usuario" />
+    <EntitySet Name="Carreras" EntityType="RC101320Model.Carrera" />
+    <FunctionImport Name="InsertarUsuario">
+      <Parameter Name="NuevoUsuario" Mode="In" Type="String" />
+      <Parameter Name="NuevaContraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerCarreras" ReturnType="Collection(RC101320Model.ObtenerCarreras_Result)" />
+    <EntitySet Name="Roles" EntityType="RC101320Model.Role" />
+    <EntitySet Name="Cursos" EntityType="RC101320Model.Curso" />
+    <EntitySet Name="Estudiantes" EntityType="RC101320Model.Estudiante" />
+    <EntitySet Name="InscripcionMaterias" EntityType="RC101320Model.InscripcionMateria" />
+    <EntitySet Name="sysdiagrams" EntityType="RC101320Model.sysdiagram" />
+    <AssociationSet Name="FK__Inscripci__Curso__2A164134" Association="RC101320Model.FK__Inscripci__Curso__2A164134">
+      <End Role="Curso" EntitySet="Cursos" />
+      <End Role="InscripcionMateria" EntitySet="InscripcionMaterias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inscripci__UserI__29221CFB" Association="RC101320Model.FK__Inscripci__UserI__29221CFB">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="InscripcionMateria" EntitySet="InscripcionMaterias" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="User" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rol" Type="Int32" />
+    <NavigationProperty Name="InscripcionMaterias" Relationship="RC101320Model.FK__Inscripci__UserI__29221CFB" FromRole="Usuario" ToRole="InscripcionMateria" />
+  </EntityType>
+  <EntityType Name="Carrera">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Descripcion" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="ObtenerCarreras_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1000" />
+  </ComplexType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdRol" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Curso">
+    <Key>
+      <PropertyRef Name="cursoID" />
+    </Key>
+    <Property Name="cursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreCurso" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="InscripcionMaterias" Relationship="RC101320Model.FK__Inscripci__Curso__2A164134" FromRole="Curso" ToRole="InscripcionMateria" />
+  </EntityType>
+  <EntityType Name="Estudiante">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Curso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="InscripcionMateria">
+    <Key>
+      <PropertyRef Name="UsuarioCursoID" />
+    </Key>
+    <Property Name="UsuarioCursoID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="CursoID" Type="Int32" />
+    <NavigationProperty Name="Curso" Relationship="RC101320Model.FK__Inscripci__Curso__2A164134" FromRole="InscripcionMateria" ToRole="Curso" />
+    <NavigationProperty Name="Usuario" Relationship="RC101320Model.FK__Inscripci__UserI__29221CFB" FromRole="InscripcionMateria" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Inscripci__Curso__2A164134">
+    <End Type="RC101320Model.Curso" Role="Curso" Multiplicity="0..1" />
+    <End Type="RC101320Model.InscripcionMateria" Role="InscripcionMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="cursoID" />
+      </Principal>
+      <Dependent Role="InscripcionMateria">
+        <PropertyRef Name="CursoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inscripci__UserI__29221CFB">
+    <End Type="RC101320Model.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="RC101320Model.InscripcionMateria" Role="InscripcionMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InscripcionMateria">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
