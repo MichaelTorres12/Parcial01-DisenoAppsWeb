@@ -4,9 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RC101320Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TC100220Parcial01odel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+advertencia 6002: La tabla o vista 'TC100220Parcial01.dbo.Carreras' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Carreras">
           <Key>
             <PropertyRef Name="Id" />
@@ -73,7 +73,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
           <Parameter Name="NuevaContraseña" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="ObtenerCarreras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="RC101320ModelStoreContainer">
+        <EntityContainer Name="TC100220Parcial01ModelStoreContainer">
           <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InscripcionMaterias" EntityType="Self.InscripcionMaterias" Schema="dbo" store:Type="Tables" />
@@ -91,25 +91,25 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="RC101320Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TC100220Parcial01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RC101320Entities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Usuarios" EntityType="RC101320Model.Usuario" />
-          <EntitySet Name="Carreras" EntityType="RC101320Model.Carrera" />
+          <EntitySet Name="Usuarios" EntityType="TC100220Parcial01Model.Usuario" />
+          <EntitySet Name="Carreras" EntityType="TC100220Parcial01Model.Carrera" />
           <FunctionImport Name="InsertarUsuario">
             <Parameter Name="NuevoUsuario" Mode="In" Type="String" />
             <Parameter Name="NuevaContraseña" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerCarreras" ReturnType="Collection(RC101320Model.ObtenerCarreras_Result)" />
-          <EntitySet Name="Roles" EntityType="RC101320Model.Role" />
-          <EntitySet Name="Cursos" EntityType="RC101320Model.Curso" />
-          <EntitySet Name="Estudiantes" EntityType="RC101320Model.Estudiante" />
-          <EntitySet Name="InscripcionMaterias" EntityType="RC101320Model.InscripcionMateria" />
-          <EntitySet Name="sysdiagrams" EntityType="RC101320Model.sysdiagram" />
-          <AssociationSet Name="FK__Inscripci__Curso__2A164134" Association="RC101320Model.FK__Inscripci__Curso__2A164134">
+          <EntitySet Name="Roles" EntityType="TC100220Parcial01Model.Role" />
+          <EntitySet Name="Cursos" EntityType="TC100220Parcial010Model.Curso" />
+          <EntitySet Name="Estudiantes" EntityType="TC100220Parcial01Model.Estudiante" />
+          <EntitySet Name="InscripcionMaterias" EntityType="TC100220Parcial01Model.InscripcionMateria" />
+          <EntitySet Name="sysdiagrams" EntityType="TC100220Parcial01Model.sysdiagram" />
+          <AssociationSet Name="FK__Inscripci__Curso__2A164134" Association="TC100220Parcial01Model.FK__Inscripci__Curso__2A164134">
             <End Role="Curso" EntitySet="Cursos" />
             <End Role="InscripcionMateria" EntitySet="InscripcionMaterias" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inscripci__UserI__29221CFB" Association="RC101320Model.FK__Inscripci__UserI__29221CFB">
+          <AssociationSet Name="FK__Inscripci__UserI__29221CFB" Association="TC100220Parcial01Model.FK__Inscripci__UserI__29221CFB">
             <End Role="Usuario" EntitySet="Usuarios" />
             <End Role="InscripcionMateria" EntitySet="InscripcionMaterias" />
           </AssociationSet>
@@ -197,8 +197,8 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Inscripci__UserI__29221CFB">
-          <End Type="RC101320Model.Usuario" Role="Usuario" Multiplicity="0..1" />
-          <End Type="RC101320Model.InscripcionMateria" Role="InscripcionMateria" Multiplicity="*" />
+          <End Type="TC100220Parcial01Model.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="TC100220Parcial01Model.InscripcionMateria" Role="InscripcionMateria" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="Id" />
@@ -213,9 +213,9 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RC101320ModelStoreContainer" CdmEntityContainer="RC101320Entities1">
+        <EntityContainerMapping StorageEntityContainer="TC100220Parcial010ModelStoreContainer" CdmEntityContainer="TC100220Parcial01Entities1">
           <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="RC101320Model.Usuario">
+            <EntityTypeMapping TypeName="TC100220Parcial01Model.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="Rol" ColumnName="Rol" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -225,7 +225,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Carreras">
-            <EntityTypeMapping TypeName="RC101320Model.Carrera">
+            <EntityTypeMapping TypeName="TC100220Parcial01Model.Carrera">
               <MappingFragment StoreEntitySet="Carreras">
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -233,10 +233,10 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="InsertarUsuario" FunctionName="RC101320Model.Store.InsertarUsuario" />
-          <FunctionImportMapping FunctionImportName="ObtenerCarreras" FunctionName="RC101320Model.Store.ObtenerCarreras">
+          <FunctionImportMapping FunctionImportName="InsertarUsuario" FunctionName="TC100220Parcial01Model.Store.InsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="ObtenerCarreras" FunctionName="TC100220Parcial01Model.Store.ObtenerCarreras">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="RC101320Model.ObtenerCarreras_Result">
+              <ComplexTypeMapping TypeName="TC100220Parcial01Model.ObtenerCarreras_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -244,7 +244,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
             </ResultMapping>
           </FunctionImportMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="RC101320Model.Role">
+            <EntityTypeMapping TypeName="TC100220Parcial01Model.Role">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="IdRol" ColumnName="IdRol" />
                 <ScalarProperty Name="Rol" ColumnName="Rol" />
@@ -253,7 +253,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cursos">
-            <EntityTypeMapping TypeName="RC101320Model.Curso">
+            <EntityTypeMapping TypeName="TC100220Parcial01Model.Curso">
               <MappingFragment StoreEntitySet="Cursos">
                 <ScalarProperty Name="nombreCurso" ColumnName="nombreCurso" />
                 <ScalarProperty Name="cursoID" ColumnName="cursoID" />
@@ -261,7 +261,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estudiantes">
-            <EntityTypeMapping TypeName="RC101320Model.Estudiante">
+            <EntityTypeMapping TypeName="TC100220Parcial01Model.Estudiante">
               <MappingFragment StoreEntitySet="Estudiantes">
                 <ScalarProperty Name="Curso" ColumnName="Curso" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -271,7 +271,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InscripcionMaterias">
-            <EntityTypeMapping TypeName="RC101320Model.InscripcionMateria">
+            <EntityTypeMapping TypeName="RTC100220Parcial01Model.InscripcionMateria">
               <MappingFragment StoreEntitySet="InscripcionMaterias">
                 <ScalarProperty Name="CursoID" ColumnName="CursoID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -280,7 +280,7 @@ advertencia 6002: La tabla o vista 'RC101320.dbo.Carreras' no tiene definida nin
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="RC101320Model.sysdiagram">
+            <EntityTypeMapping TypeName="TC100220Parcial01Model.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="definition" ColumnName="definition" />
                 <ScalarProperty Name="version" ColumnName="version" />
